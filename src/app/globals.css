@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #fbfaf6;
+  --color-cream: #f3e8d6;
+  --color-ink: #140d08;
+  --color-husk: #6e4527;
+  --color-husk-light: #8a5a36;
+  --color-shell: #3b2415;
+  --color-bark: #24160c;
+  --color-sun: #ffd21a;
+  --color-sun-deep: #f5b800;
+
+  --font-display: var(--font-anton), "Impact", "Arial Narrow", sans-serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+.display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.84;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Line / char masks used by text reveals */
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+  margin-bottom: -0.04em;
+}
+.mask > * {
+  display: block;
+  will-change: transform;
+}
+
+.hairline {
+  height: 1px;
+  background: currentColor;
+  opacity: 0.18;
+}
+
+@keyframes palmo-scroll-dot {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(18px); opacity: 0; }
+}
+.scroll-dot {
+  animation: palmo-scroll-dot 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes palmo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: palmo-marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-dot,
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Nav colour follows the scene underneath */
+html[data-nav="light"] .site-nav {
+  color: var(--color-paper);
+}
